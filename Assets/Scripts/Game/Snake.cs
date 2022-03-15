@@ -4,15 +4,23 @@ using UnityEngine;
 
 public class Snake : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
     void Update()
     {
-        
+        if (Input.GetKeyDown(KeyCode.LeftArrow))
+        {
+            this.transform.position = new Vector2(transform.position.x - 1, transform.position.y);
+        }
+        else if (Input.GetKeyDown(KeyCode.RightArrow))
+        {
+            this.transform.position = new Vector2(transform.position.x + 1, transform.position.y);
+        }
+        else if (Input.GetKeyDown(KeyCode.UpArrow))
+        {
+            this.transform.position = new Vector2(transform.position.x, transform.position.y + 1);
+        }
+        else if (Input.GetKeyDown(KeyCode.DownArrow))
+        {
+            this.transform.position = new Vector2(transform.position.x, transform.position.y - 1);
+        }
     }
 }
