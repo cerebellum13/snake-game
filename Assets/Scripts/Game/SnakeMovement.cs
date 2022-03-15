@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class SnakeMovement : MonoBehaviour
 {
-    public float Speed = 10;
+    public float Speed = 15;
 
     private Rigidbody2D componentRigidbody;
     public static SnakeTail componentSnakeTail;
@@ -11,11 +11,7 @@ public class SnakeMovement : MonoBehaviour
     {
         componentRigidbody = GetComponent<Rigidbody2D>();
         componentSnakeTail = GetComponent<SnakeTail>();
-
-        componentSnakeTail.AddCircle();
-        componentSnakeTail.AddCircle();
-        componentSnakeTail.AddCircle();
-        componentSnakeTail.AddCircle();
+        componentRigidbody.velocity = Vector2.left * Speed;
     }
 
     private void FixedUpdate()
@@ -50,6 +46,15 @@ public class SnakeMovement : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.D))
         {
             componentSnakeTail.RemoveCircle();
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        Debug.Log("Collision!");
+        if (collision.gameObject.name.Contains("SnakePart"))
+        {
+            UnityEngine.SceneManagement.SceneManager.LoadScene(2);
         }
     }
 }
