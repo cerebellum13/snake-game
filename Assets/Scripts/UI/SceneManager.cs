@@ -7,7 +7,6 @@ public class SceneManager : MonoBehaviour
     public void GoToGame()
     {
         ScoreSystem.currentScore = 0;
-        Snake.GetInstance();
         UnityEngine.SceneManagement.SceneManager.LoadScene(1);
     }
     public void GoToMainMenu()

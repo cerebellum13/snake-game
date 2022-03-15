@@ -11,7 +11,7 @@ public class Apple : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         ScoreSystem.increaseScore();
-        // Snake.GetInstance().AddSnakeTale();
+        SnakeMovement.componentSnakeTail.AddCircle();
         gameObject.transform.position = generateNewPosition();
     }
 
