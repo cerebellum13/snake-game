@@ -4,23 +4,56 @@ using UnityEngine;
 
 public class Snake : MonoBehaviour
 {
+    public float speed = 0.25f;
+    private static Direction currentDirection = Direction.Left;
+    private enum Direction
+    {
+        Up,
+        Down,
+        Left,
+        Right
+    }
+    private void Start()
+    {
+        Application.targetFrameRate = 60;
+    }
     void Update()
     {
+        gameObject.transform.position = getNewPositionByDirection(gameObject.transform.position, currentDirection);
+
+
         if (Input.GetKeyDown(KeyCode.LeftArrow))
         {
-            this.transform.position = new Vector2(transform.position.x - 1, transform.position.y);
+            currentDirection = Direction.Left;
         }
         else if (Input.GetKeyDown(KeyCode.RightArrow))
         {
-            this.transform.position = new Vector2(transform.position.x + 1, transform.position.y);
+            currentDirection = Direction.Right;
         }
         else if (Input.GetKeyDown(KeyCode.UpArrow))
         {
-            this.transform.position = new Vector2(transform.position.x, transform.position.y + 1);
+            currentDirection = Direction.Up;
         }
         else if (Input.GetKeyDown(KeyCode.DownArrow))
         {
-            this.transform.position = new Vector2(transform.position.x, transform.position.y - 1);
+            currentDirection = Direction.Down;
+        }
+    }
+
+    private Vector3 getNewPositionByDirection(Vector3 position, Direction direction)
+    {
+        switch (direction)
+        {
+            case Direction.Up:
+                return new Vector3(position.x, position.y + speed);
+            case Direction.Down:
+                return new Vector3(position.x, position.y - speed);
+            case Direction.Left:
+                return new Vector3(position.x - speed, position.y);
+            case Direction.Right:
+                return new Vector3(position.x + speed, position.y);
+            default:
+                throw new System.Exception();
         }
     }
 }
