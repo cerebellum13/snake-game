@@ -6,6 +6,7 @@ public class SceneManager : MonoBehaviour
 {
     public void GoToGame()
     {
+        ScoreSystem.currentScore = 0;
         UnityEngine.SceneManagement.SceneManager.LoadScene(1);
     }
     public void GoToMainMenu()

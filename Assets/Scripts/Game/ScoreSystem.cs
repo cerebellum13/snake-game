@@ -1,18 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ScoreSystem : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public static int currentScore = 100;
+    public GameObject scoreValueText;
 
-    // Update is called once per frame
-    void Update()
+    public void Start()
     {
-        
+        scoreValueText.GetComponent<Text>().text = currentScore.ToString();
+    }
+    public void increaseScore()
+    {
+        currentScore += 1;
+        scoreValueText.GetComponent<Text>().text = currentScore.ToString();
     }
 }
